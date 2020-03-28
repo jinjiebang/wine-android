@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'bugly'
 
 bugly {
-    appId = '***REMOVED***' // 注册时分配的App ID
-    appKey = '***REMOVED***' // 注册时分配的App Key
+    appId = '' // 注册时分配的App ID
+    appKey = '' // 注册时分配的App Key
     debug = true
 }
 android {

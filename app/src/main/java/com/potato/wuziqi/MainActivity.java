@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CrashReport.initCrashReport(getApplicationContext(), "***REMOVED***", true);
+        CrashReport.initCrashReport(getApplicationContext(), "4e52217973", true);
 
         initViews();
         mHandle = new MainHandler(this);
