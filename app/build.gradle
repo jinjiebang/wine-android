@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'bugly'
+
+bugly {
+    appId = '4e52217973' // 注册时分配的App ID
+    appKey = 'f0ce9d57-8129-488f-ab7e-6499dc2d0583' // 注册时分配的App Key
+    debug = true
+}
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.potato.wuziqi"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.3"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions"
+            }
+        }
+        ndk {
+            abiFilters 'x86', 'x86_64', 'armeabi-v7a','arm64-v8a'
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                // 此处指定生成的apk文件名
+                outputFileName = "gobang.apk"
+            }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+            version "3.10.2"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.tencent.bugly:crashreport:2.6.6.1'
+    implementation 'com.tencent.bugly:nativecrashreport:3.3.1'
+}
